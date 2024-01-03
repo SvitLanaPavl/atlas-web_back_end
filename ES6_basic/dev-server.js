@@ -6,3 +6,4 @@ import './5-main.js';
 import './6-main.js';
 import './7-main.js';
 import './8-main.js';
+import './9-main.js';
