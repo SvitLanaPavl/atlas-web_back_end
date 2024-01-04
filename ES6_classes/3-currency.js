@@ -8,7 +8,7 @@ export default class Currency {
   }
 
   get code() {
-    return this._code
+    return this._code;
   }
 
   set code(newCode) {
