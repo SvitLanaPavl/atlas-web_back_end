@@ -1,12 +1,11 @@
-
-function getListStudents() {
+export default function getListStudents() {
   const arrObj = [];
   const obj1 = {};
   obj1.id = 1;
   obj1.firstName = 'Guillaume';
   obj1.location = 'San Francisco';
   arrObj.push(obj1);
-  
+
   const obj2 = {};
   obj2.id = 2;
   obj2.firstName = 'James';
