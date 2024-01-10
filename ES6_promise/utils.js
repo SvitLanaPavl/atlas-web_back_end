@@ -1,4 +1,4 @@
-export default function uploadPhoto() {
+export function uploadPhoto() {
   return new Promise(() => {
     return {
       status: 200,
