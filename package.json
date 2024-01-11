@@ -47,9 +47,10 @@
     "type": "git",
     "url": "git://github.com/dominictarr/json-buffer.git"
   },
+  "type": "module",
   "scripts": {
     "dev": "npx ES6_data_manipulation/dev-server.js",
-    "test": "set -e; for t in test/*.js; do node $t; done"
+    "test": "set -e; for t in test/*.js; do node $t || exit 1; done"
   },
   "testling": {
     "files": "test/*.js",
