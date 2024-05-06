@@ -18,7 +18,7 @@ class LRUCache(BaseCaching):
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             discarded = list(self.cache_data.keys())[0]
             del self.cache_data[discarded]
-            print(f'DISCARDED: {discarded}')
+            print('DISCARDED: {}'.format(discarded))
         self.cache_data[key] = item
 
     def get(self, key):
