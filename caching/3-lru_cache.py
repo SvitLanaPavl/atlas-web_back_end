@@ -16,13 +16,13 @@ class LRUCache(BaseCaching):
         if key is None or item is None:
             return
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            discarded = next(iter(self.cache_data))
+            discarded = list(self.cache_data.keys())[0]
             del self.cache_data[discarded]
             print(f'DISCARDED: {discarded}')
         self.cache_data[key] = item
 
     def get(self, key):
         '''Returns the value'''
-        if key is not None and key in self.cache_data:
-            return self.cache_data[key]
-        return None
+        if key is None or key not in self.cache_data:
+            return None
+        return self.cache_data[key]
