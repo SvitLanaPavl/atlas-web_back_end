@@ -49,10 +49,10 @@ class Server:
         if index is None:
             index = 0
             return {
-            "index": None,
-            "next_index": None,
-            "page_size": page_size,
-            "data": []
+                "index": None,
+                "next_index": None,
+                "page_size": page_size,
+                "data": []
             }
         next_index = min(index + page_size, last_index + 1)
         data = [dataset.get(i, []) for i in range(index, next_index)]
