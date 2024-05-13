@@ -38,3 +38,19 @@ class RedactingFormatter(logging.Formatter):
         formatted = super().format(record)
         record.msg = original_msg
         return formatted
+
+
+PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
+DATA_FILE = 'user_data.csv'
+
+
+def get_logger() -> logging.Logger:
+    '''Returns logging.Logger object'''
+    logger = logging.getLogger('user_data')
+    logging.basicConfig(filename=DATA_FILE, level=logging.INFO)
+    logger.propagate = False
+    stream = logger.StreamHandler()
+    formatter = RedactingFormatter(PII_FIELDS)
+    stream.setFormatter(formatter)
+    logger.addHandler(stream)
+    return logger
