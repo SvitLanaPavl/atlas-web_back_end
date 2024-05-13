@@ -50,7 +50,7 @@ def get_logger() -> logging.Logger:
     logger.setLevel(logging.INFO)
     logging.basicConfig(filename=DATA_FILE, level=logging.INFO)
     logger.propagate = False
-    stream = logger.StreamHandler()
+    stream = logging.StreamHandler()
     formatter = RedactingFormatter(PII_FIELDS)
     stream.setFormatter(formatter)
     logger.addHandler(stream)
