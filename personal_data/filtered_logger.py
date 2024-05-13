@@ -28,7 +28,7 @@ class RedactingFormatter(logging.Formatter):
     def __init__(self, fields):
         '''Constructor'''
         super(RedactingFormatter, self).__init__(self.FORMAT)
-        self.fields = fields
+        self.fields = fields(list)
         
 
     def format(self, record: logging.LogRecord) -> str:
