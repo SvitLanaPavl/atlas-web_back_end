@@ -47,6 +47,7 @@ DATA_FILE = 'user_data.csv'
 def get_logger() -> logging.Logger:
     '''Returns logging.Logger object'''
     logger = logging.getLogger('user_data')
+    logger.setLevel(logging.INFO)
     logging.basicConfig(filename=DATA_FILE, level=logging.INFO)
     logger.propagate = False
     stream = logger.StreamHandler()
