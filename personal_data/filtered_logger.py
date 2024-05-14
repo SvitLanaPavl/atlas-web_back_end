@@ -68,3 +68,11 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     return mysql.connector.connect(user=db_username, password=db_password,
                                    host=db_host,
                                    database=db_name)
+def main():
+    '''Obtains database connection'''
+    db = get_db()
+    
+    
+
+if __name__ == '__main__':
+    main()
