@@ -10,7 +10,7 @@ def hash_password(password: str) -> bytes:
     return bcrypt.hashpw(bytes, salt)
 
 
-def is_valid(hashed_password: bool, password: str) -> bytes:
+def is_valid(hashed_password: bytes, password: str) -> bool:
     '''Validates provided password matches hashed'''
     pass_bytes = hash_password(password)
     return bcrypt.checkpw(hashed_password, pass_bytes)
