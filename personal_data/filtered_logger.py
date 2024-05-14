@@ -58,6 +58,7 @@ def get_logger() -> logging.Logger:
     logger.addHandler(stream)
     return logger
 
+
 def get_db() -> mysql.connector.connection.MySQLConnection:
     '''Returns connector to the database'''
     db_username = os.getenv('PERSONAL_DATA_DB_USERNAME')
