@@ -54,14 +54,12 @@ class BasicAuth(Auth):
         self, user_email: str, user_pwd: str
             ) -> TypeVar('User'):
         '''Returns user instance based on his email and password'''
-        user = User()
         if user_email is None or not isinstance(user_email, str):
             return None
         if user_pwd is None or not isinstance(user_pwd, str):
             return None
-        search_attr = {'email': user_email}
-        if user.search(search_attr) is False:
-            return None
-        if not user.is_valid_password(user_pwd):
-            return None
-        return user
+        search_usr = User.search({'email': user_email})
+        for user in search_usr:
+            if not user.is_valid_password(user_pwd):
+                return None
+            return user
