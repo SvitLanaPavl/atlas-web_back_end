@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 '''Manage the API authentication'''
 from flask import request
-from typing import TypeVar, List
 from api.v1.auth.auth import Auth
-import base64
-import binascii
-from models.user import User
 import uuid
+
+
 
 
 class SessionAuth(Auth):
@@ -41,5 +39,6 @@ class SessionAuth(Auth):
         user_id = self.user_id_for_session_id(session_id)
         if user_id is None:
             return None
+        from models.user import User
         user = User().get(user_id)
         return user
