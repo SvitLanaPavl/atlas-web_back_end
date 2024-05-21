@@ -6,7 +6,7 @@ from api.v1.views import app_views
 from os import getenv
 
 
-@app_views.route('/auth_session/login', methods=[POST], strict_slashes=False)
+@app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def login() -> str:
     '''Retrieves parameters'''
     email = request.form.get('email')
@@ -16,7 +16,7 @@ def login() -> str:
         return jsonify({'error': 'email missing'}), 400
 
     if password is None:
-        return jsonify({'error': 'passowrd missing'}), 400
+        return jsonify({'error': 'password missing'}), 400
 
     from api.v1.models.user import User
     search_user = User.search({'email', email})
