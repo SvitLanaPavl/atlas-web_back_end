@@ -4,8 +4,6 @@ from api.v1.auth.auth import Auth
 import uuid
 
 
-
-
 class SessionAuth(Auth):
     '''Session authentication'''
     user_id_by_session_id = {}
@@ -44,7 +42,7 @@ class SessionAuth(Auth):
 
     def destroy_session(self, request=None):
         '''Deletes the user session/logout'''
-        if request is None:
+        if not request:
             return False
         session_id = self.session_cookie(request)
         if not session_id:
