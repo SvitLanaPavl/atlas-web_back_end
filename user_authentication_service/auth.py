@@ -14,6 +14,7 @@ def _hash_password(password: str) -> bytes:
     salt = bcrypt.gensalt(rounds=15)
     return bcrypt.hashpw(byte_repr, salt)
 
+
 def _generate_uuid() -> str:
     '''Str representation of the new uuid'''
     return str(uuid.uuid4())
