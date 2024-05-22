@@ -47,3 +47,15 @@ class DB:
             return find_usr
         except TypeError:
             raise InvalidRequestError
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        '''Locates the user to update'''
+        locate_usr = self.find_user_by(id=user_id)
+        if locate_usr is None:
+            return None
+        for key, value in kwargs.items():
+            if hasattr(locate_usr, key):
+                setattr(locate_usr, key, value)
+            else:
+                raise ValueError
+        self._session.commit()
