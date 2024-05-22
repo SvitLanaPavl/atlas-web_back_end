@@ -3,3 +3,4 @@ push
 main*
 .DS_Store
 *.json
+a.db
