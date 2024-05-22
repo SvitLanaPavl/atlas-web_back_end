@@ -31,8 +31,6 @@ def login() -> str:
     '''Log in'''
     email = request.form.get('email')
     password = request.form.get('password')
-    if not email or not password:
-        abort(401)
     session_id = AUTH.create_session(email)
     if session_id:
         response = jsonify({"email": f"{email}", "message": "logged in"})
