@@ -36,7 +36,7 @@ def login() -> str:
         response = jsonify({"email": f"{email}", "message": "logged in"})
         response.set_cookie('session_id', session_id)
         return response
-    except:
+    except TypeError:
         abort(401)
 
 
