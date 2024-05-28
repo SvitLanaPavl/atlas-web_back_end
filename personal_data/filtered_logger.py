@@ -68,10 +68,19 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     return mysql.connector.connect(user=db_username, password=db_password,
                                    host=db_host,
                                    database=db_name)
-def main():
+def main() -> None:
     '''Obtains database connection'''
     db = get_db()
-    
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM users;')
+    logger = get_logger()
+    fields = [desc[0] for desc in cursor.description]
+
+    for row in cursor.fetchall():
+        message = '; '.join(f'{field}={value}' for field, value in zip(fields, row)) + ';'
+        logger.info(message)
+    cursor.close()
+    db.close()
     
 
 if __name__ == '__main__':
