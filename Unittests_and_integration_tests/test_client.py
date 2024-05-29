@@ -2,13 +2,14 @@
 '''Test client Doc'''
 import unittest
 from client import GithubOrgClient
-from parameterized import parameterized
+from parameterized import parameterized, parameterized_class
 from unittest.mock import patch, Mock
 from utils import (
     get_json,
     access_nested_map,
     memoize,
 )
+from fixtures import org_payload, repos_payload, expected_repos, apache2_repos
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -61,6 +62,24 @@ class TestGithubOrgClient(unittest.TestCase):
     def test_has_license(self, repo, license_key, expected):
         '''Test has license'''
         self.assertEqual(GithubOrgClient.has_license(repo, license_key), expected)
+
+
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    '''Integration test'''
+    @parameterized_class(
+        {'org_payload': org_payload, 'repos_payload': repos_payload, 'expected_repos': expected_repos, 'apache2_repos': apache2_repos}
+    )
+
+    @classmethod
+    def setUpClass(cls):
+        '''Setup method'''
+        cls.get_patcher = patch('requests.get')
+        cls.mock_get = cls.get_patcher.start() 
+
+    @classmethod
+    def tearDownClass(self):
+        '''TearDown'''
+    cls.get_patcher.stop()
 
 
 if __name__ == '__main__':
