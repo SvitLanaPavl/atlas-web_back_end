@@ -66,7 +66,7 @@ class TestGithubOrgClient(unittest.TestCase):
 
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     '''Integration test'''
-    @parameterized_class(
+    @parameterized.parameterized_class(
         {'org_payload': org_payload, 'repos_payload': repos_payload, 'expected_repos': expected_repos, 'apache2_repos': apache2_repos}
     )
 
