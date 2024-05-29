@@ -63,12 +63,11 @@ class TestGithubOrgClient(unittest.TestCase):
         '''Test has license'''
         self.assertEqual(GithubOrgClient.has_license(repo, license_key), expected)
 
-
-class TestIntegrationGithubOrgClient(unittest.TestCase):
-    '''Integration test'''
-    @parameterized.parameterized_class(
+@parameterized.parameterized_class(
         {'org_payload': org_payload, 'repos_payload': repos_payload, 'expected_repos': expected_repos, 'apache2_repos': apache2_repos}
     )
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    '''Integration test'''
 
     @classmethod
     def setUpClass(cls):
