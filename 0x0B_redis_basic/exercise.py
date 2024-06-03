@@ -31,6 +31,19 @@ def call_history(method: Callable) -> Callable:
     return wrapper
 
 
+def replay(method: Callable):
+    '''Retrieving lists'''
+    redis = method.__self__._redis
+    input_key = f'{method.__qualname__}:inputs'
+    output_key = f'{method.__qualname__}:outputs'
+    inputs = redis.lrange(input_key, 0, -1)
+    outputs = redis.lrange(output_key, 0, -1)
+    print(f'{method.__qualname__} was called {len(inputs)} times:')
+    for input, output in zip(inputs, outputs):
+        print(f'{method.__qualname__}(*{input.decode("utf-8")})\
+              -> {output.decode("utf-8")}')
+
+
 class Cache:
     '''Cache class documentation'''
     def __init__(self):
@@ -67,15 +80,3 @@ class Cache:
     def increment(self, key: str) -> int:
         '''Increment the value'''
         return self._redis.incr(key)
-
-
-def replay(method: Callable):
-    '''Retrieving lists'''
-    redis = method.__self__._redis
-    input_key = f'{method.__qualname__}:inputs'
-    output_key = f'{method.__qualname__}:outputs'
-    inputs = redis.lrange(input_key, 0, -1)
-    outputs = redis.lrange(output_key, 0, -1)
-    for input, output in zip(inputs, outputs):
-        print(f'{method.__qualname__}(*{input.decode("utf-8")})\
-              -> {output.decode("utf-8")}')
