@@ -2,18 +2,17 @@
 '''Module Documentation'''
 import redis
 import uuid
-from typing import Union
-from typing import Callable, Optional
+from typing import Callable, Optional, Union
 from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
-    '''Decorator documentation'''
+    '''Decorator to count calls to method'''
     @wraps(method)
-    def wrapper(self, *args, **kwds):
+    def wrapper(self, *args, **kwargs):
         key = f'count:{method.__qualname__}'
         self._redis.incr(key)
-        return method(self, *args, **kwds)
+        return method(self, *args, **kwargs)
     return wrapper
 
 class Cache:
@@ -46,3 +45,7 @@ class Cache:
     def get_int(self, key: str) -> Optional[int]:
         '''Decode bytes to int'''
         return self.get(key, lambda k: int(k))
+
+    def increment(self, key: str) -> int:
+        '''Increment the value'''
+        return self._redis.incr(key)
