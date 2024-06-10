@@ -5,7 +5,7 @@ SELECT
     students.name
 FROM
     students
-LEFT JOIN
+JOIN
     scores ON students.id = scores.student_id
 LEFT JOIN
     meetings ON students.id = meetings.student_id
