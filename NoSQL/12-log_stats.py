@@ -9,6 +9,7 @@ if __name__ == '__main__':
     db = client.logs
     collection = db.nginx
     total_logs = collection.count_documents({})
+    print(f'{total_logs} logs')
     methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
     print('Methods:')
     for method in methods:
