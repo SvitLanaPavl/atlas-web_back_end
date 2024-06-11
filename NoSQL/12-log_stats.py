@@ -7,7 +7,7 @@ if __name__ == '__main__':
     '''Stats about Nginx logs stored in MongoDB'''
     client = MongoClient('mongodb://127.0.0.1:27017')
     db = client.logs
-    collection = db.Nginx
+    collection = db.nginx
     total_logs = collection.count_documents({})
     methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
     print('Methods:')
