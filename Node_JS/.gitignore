@@ -2,3 +2,4 @@ babel.config.js
 push
 .eslintrc.js
 package*
+*-main.js
