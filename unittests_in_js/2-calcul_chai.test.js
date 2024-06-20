@@ -11,10 +11,10 @@ describe('calculateNumber', () => {
       expect(calculateNumber('SUM', 1.4, 4)).to.equal(5);
     });
     it('SUM one str argument', function() {
-      expect(calculateNumber('SUM', 1.4, 'b')).to.equal(NaN);
+      expect(isNaN(calculateNumber('SUM', 1.4, 'b'))).to.equal(true);
     });
     it('SUM two str arguments', function() {
-      expect(calculateNumber('SUM', 'a', 'b')).to.equal(NaN);
+      expect(isNaN(calculateNumber('SUM', 'a', 'b'))).to.equal(true);
     });
     it('SUM two floats one negative', function() {
       expect(calculateNumber('SUM', 1.4, -4.5)).to.equal(-3);
@@ -31,10 +31,10 @@ describe('calculateNumber', () => {
       expect(calculateNumber('SUBTRACT', 1.4, 4)).to.equal(-3);
     });
     it('SUB one str srg', function() {
-      expect(calculateNumber('SUBTRACT', 1.4, 'b')).to.equal(NaN);
+      expect(isNaN(calculateNumber('SUBTRACT', 1.4, 'b'))).to.equal(true);
     });
     it('SUB two str args', function() {
-      expect(calculateNumber('SUBTRACT', 'a', 'b')).to.equal(NaN);
+      expect(isNaN(calculateNumber('SUBTRACT', 'a', 'b'))).to.equal(true);
     });
     it('SUB one negative', function() {
       expect(calculateNumber('SUBTRACT', -1.4, 4.5)).to.equal(-6);
