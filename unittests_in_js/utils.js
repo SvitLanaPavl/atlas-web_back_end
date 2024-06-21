@@ -1,7 +1,7 @@
 // utils.js
 
 const Utils = {
-  CalculateNumber: function calculateNumber(type, a, b) {
+  calculateNumber(type, a, b) {
     const round = num => Math.round(num);
 
       switch (type) {
