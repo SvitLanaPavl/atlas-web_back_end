@@ -24,8 +24,8 @@ describe('Cart Page', () => {
     });
   });
   it('Correct message when id is a number', (done) => {
-    request('http://localhost:7865/cart/12', (err, res) => {
-      expect(body).to.equal('Payment methods for cart 123');
+    request('http://localhost:7865/cart/12', (err, res, body) => {
+      expect(body).to.equal('Payment methods for cart 12');
       done();
     });
   });
