@@ -61,10 +61,10 @@ describe('Login', () => {
   it('Welcomes the user', (done) => {
     request.post({
       url: 'http://localhost:7865/login/',
-      json: { userName: 'john' }
+      json: { userName: 'BobDylan' }
     }, (err, res, body) => {
       expect(res.statusCode).to.equal(200);
-      expect(body).to.equal('Welcome john');
+      expect(body).to.equal('Welcome BobDylan');
       done();
     });
   });
