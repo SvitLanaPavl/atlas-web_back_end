@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   app:
     entrypoint:
@@ -5,13 +7,14 @@ services:
     - infinity
     build:
       context: .
-      dockerfile: Dockerfile    
+      dockerfile: Dockerfile.python
     init: true
     volumes:
     - type: bind
       source: /var/run/docker.sock
       target: /var/run/docker.sock
     - ./:/app
+
   db:
     image: mysql:8.0
     environment:
@@ -23,5 +26,31 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  mongodb:
+    build:
+      context: .
+      dockerfile: Dockerfile.mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: my_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  node:
+    entrypoint:
+      - sleep
+      - infinity
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    volumes:
+      - ./:/node-app
+    ports:
+      - "3000:3000"
+
 volumes:
   mysql_data:
+  mongo_data:

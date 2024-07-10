@@ -1,6 +1,7 @@
-package-lock.json
-package.json
+redis-6.0.10/
+redis-6.0.10.tar.gz
 node_modules/
 path
 .DS_Store
 push
+*main*
